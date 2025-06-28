@@ -1,0 +1,60 @@
+<Window x:Class="AvalonReader.Views.MainView"
+        xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:edit="using:AvaloniaEdit"
+        xmlns:local="using:AvalonReader.Views"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="using:AvalonReader.ViewModels"
+        Title="AvalonReader"
+        d:DesignHeight="450"
+        d:DesignWidth="800"
+        x:DataType="vm:MainViewModel"
+        ExtendClientAreaToDecorationsHint="True"
+        WindowStartupLocation="CenterScreen"
+        mc:Ignorable="d">
+
+	<Design.DataContext>
+		<vm:MainViewModel />
+	</Design.DataContext>
+
+	<DockPanel>
+		<Menu DockPanel.Dock="Top">
+			<MenuItem Header="File">
+				<MenuItem Command="{Binding OpenFileCommand}" Header="Open" />
+				<MenuItem Header="Open Recent" ItemsSource="{Binding Settings.RecentFiles}">
+					<MenuItem.ItemTemplate>
+						<DataTemplate>
+							<MenuItem Command="{Binding DataContext.OpenRecentCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+                                      CommandParameter="{Binding}"
+                                      Header="{Binding Path}" />
+						</DataTemplate>
+					</MenuItem.ItemTemplate>
+					<!--<Separator />
+					<MenuItem Command="{Binding ClearRecentCommand}" Header="清空列表" />-->
+				</MenuItem>
+				<MenuItem Command="{Binding ReloadFileCommand}" Header="Reload" />
+				<MenuItem Command="{Binding CloseFileCommand}" Header="Close" />
+			</MenuItem>
+			<MenuItem Command="{Binding OpenPreferencesCommand}" Header="Preferences" />
+		</Menu>
+		<StackPanel DockPanel.Dock="Bottom">
+			<TextBlock Margin="5,5,5,5" Text="{Binding StatusText}" />
+		</StackPanel>
+		<Grid DockPanel.Dock="Top">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="*" />
+				<ColumnDefinition Width="5*" />
+				<ColumnDefinition Width="*" />
+			</Grid.ColumnDefinitions>
+			<edit:TextEditor Grid.Column="1"
+                             DockPanel.Dock="Top"
+                             Document="{Binding Content, Mode=OneWay}"
+                             FontFamily="{Binding Settings.FontFamily}"
+                             FontSize="{Binding Settings.FontSize}"
+                             IsEnabled="{Binding IsEditEnabled}"
+                             IsReadOnly="True"
+                             WordWrap="{Binding Settings.WrapText}" />
+		</Grid>
+	</DockPanel>
+</Window>

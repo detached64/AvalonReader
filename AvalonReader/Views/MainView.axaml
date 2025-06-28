@@ -22,17 +22,6 @@
 		<Menu DockPanel.Dock="Top">
 			<MenuItem Header="File">
 				<MenuItem Command="{Binding OpenFileCommand}" Header="Open" />
-				<MenuItem Header="Open Recent" ItemsSource="{Binding Settings.RecentFiles}">
-					<MenuItem.ItemTemplate>
-						<DataTemplate>
-							<MenuItem Command="{Binding DataContext.OpenRecentCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
-                                      CommandParameter="{Binding}"
-                                      Header="{Binding Path}" />
-						</DataTemplate>
-					</MenuItem.ItemTemplate>
-					<!--<Separator />
-					<MenuItem Command="{Binding ClearRecentCommand}" Header="清空列表" />-->
-				</MenuItem>
 				<MenuItem Command="{Binding ReloadFileCommand}" Header="Reload" />
 				<MenuItem Command="{Binding CloseFileCommand}" Header="Close" />
 			</MenuItem>

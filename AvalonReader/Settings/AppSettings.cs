@@ -2,10 +2,8 @@ using Avalonia;
 using Avalonia.Media;
 using Avalonia.Styling;
 using AvalonReader.Converters.Json;
-using AvalonReader.Models;
 using CommunityToolkit.Mvvm.ComponentModel;
 using System;
-using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.IO;
 using System.Reflection;
@@ -16,9 +14,6 @@ namespace AvalonReader.Settings
 {
     internal partial class AppSettings : ObservableObject
     {
-        [ObservableProperty]
-        private ObservableCollection<RecentFile> recentFiles = [];
-
         [ObservableProperty]
         private FontFamily fontFamily = new("Segoe UI");
 

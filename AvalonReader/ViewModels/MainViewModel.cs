@@ -2,7 +2,6 @@ using Avalonia.Platform.Storage;
 using AvaloniaEdit.Document;
 using AvalonReader.Helpers;
 using AvalonReader.Messengers;
-using AvalonReader.Models;
 using AvalonReader.Services;
 using AvalonReader.Settings;
 using AvalonReader.Views;
@@ -54,22 +53,11 @@ namespace AvalonReader.ViewModels
             if (resultFile.Count > 0)
             {
                 await LoadFile(resultFile[0]);
-                RecentFileHelper.AddFile(new RecentFile()
-                {
-                    File = resultFile[0]
-                });
             }
             else
             {
                 StatusText = "No file selected.";
             }
-        }
-
-        [RelayCommand]
-        private async Task OpenRecent(RecentFile file)
-        {
-            await LoadFile(file.File);
-            RecentFileHelper.AddFile(file);
         }
 
         [RelayCommand]

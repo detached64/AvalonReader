@@ -7,7 +7,7 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
     <AvaloniaUseCompiledBindingsByDefault>False</AvaloniaUseCompiledBindingsByDefault>
     <ApplicationIcon>Assets\avalonia-logo.ico</ApplicationIcon>
-    <PublishAot>False</PublishAot>
+    <PublishAot>True</PublishAot>
   </PropertyGroup>
   <PropertyGroup Label="Avalonia">
     <AvaloniaXamlReportImportance>Low</AvaloniaXamlReportImportance>
